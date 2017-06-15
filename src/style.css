@@ -115,6 +115,7 @@ header .desc {
 
 #start:disabled {
     background: rgba(255, 255, 255, .25);
+    cursor:not-allowed;
 }
 
 #firemember {
