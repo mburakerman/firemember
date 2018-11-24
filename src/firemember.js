@@ -1,5 +1,5 @@
 // show game area before starting to play
-const Initial = function() {
+const Initial = function () {
 
     let gameInitially = [];
     const ul = document.getElementById("firemember");
@@ -15,8 +15,6 @@ const Initial = function() {
 
         li.style.backgroundImage = "url('img/fire.gif')";
         li.style.backgroundSize = "cover";
-
-        ripple.bindTo(li);
     }
 
     gameInitially.map(showInitially);
@@ -25,13 +23,12 @@ const Initial = function() {
 Initial();
 
 
-const Firemember = function() {
+const Firemember = function () {
 
     let game = [];
-    let level = 1;
+    let level = 15;
     let founded = []; // push founded fires here
     let score = 0;
-    let timerInterval;
     let showTime = 500; // how many miliseconds fires will be shown
     let timesClicked = 0;
 
@@ -74,9 +71,6 @@ const Firemember = function() {
 
         li.style.backgroundImage = "url('img/color.png')";
         li.style.backgroundSize = "cover";
-
-        // show ripple effect on click
-        ripple.bindTo(li);
     }
 
     // show fires and then hide 
@@ -93,7 +87,7 @@ const Firemember = function() {
             find[i].style.backgroundSize = "cover";
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
 
             for (let i = 0; i < find.length; i++) {
                 find[i].classList.add('findMe');
@@ -103,7 +97,7 @@ const Firemember = function() {
                 find[i].style.backgroundSize = "cover";
             }
 
-            setTimeout(function() {
+            setTimeout(function () {
                 for (let i = 0; i < li.length; i++) {
                     li[i].style.pointerEvents = "auto";
                 }
@@ -114,7 +108,7 @@ const Firemember = function() {
     }
 
     // start firemember
-    start_btn.addEventListener("click", function() {
+    start_btn.addEventListener("click", function () {
 
         document.querySelector('.explosion').setAttribute("src", "img/explosion.gif");
 
@@ -122,7 +116,7 @@ const Firemember = function() {
             li[i].style.pointerEvents = "none";
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
             document.querySelector('.explosion').setAttribute("src", "");
 
             start_btn.disabled = true;
@@ -134,22 +128,11 @@ const Firemember = function() {
 
             memorize();
             click();
-            timer();
 
         }, 1250);
 
     }, false);
 
-    function timer() {
-        timerInterval = setInterval(function() {
-            time++;
-        }, showTime);
-    }
-
-    function resetTimer() {
-        clearInterval(timerInterval);
-        time = 0;
-    }
 
     function changeLevel() {
         ul.innerHTML = "";
@@ -188,7 +171,6 @@ const Firemember = function() {
         game.map(show);
         memorize();
         click();
-        timer();
     }
 
     function init() {
@@ -206,8 +188,8 @@ const Firemember = function() {
     function click() {
 
         for (let i = 0; i < li.length; i++) {
-            (function(index) {
-                li[i].addEventListener("click", function(e) {
+            (function (index) {
+                li[i].addEventListener("click", function (e) {
 
                     // make unclickable clicked li
                     e.target.style.pointerEvents = "none";
@@ -222,7 +204,6 @@ const Firemember = function() {
 
                         // if user finds fires on that level, change level
                         if (founded.length === level) {
-                            resetTimer();
                             score++;
 
                             document.getElementById('score').innerHTML = `Score is: ${score}`;
@@ -237,14 +218,14 @@ const Firemember = function() {
                             if (score % 2 === 0) {
                                 ul.style.pointerEvents = "none";
 
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     changeLevel();
                                 }, showTime);
 
                             } else {
                                 ul.style.pointerEvents = "none";
 
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     next();
                                 }, showTime);
                             }
@@ -259,7 +240,7 @@ const Firemember = function() {
                             init();
 
                             document.getElementById('score').innerHTML = `Score is: ${score}`;
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 Initial();
                             }, 50);
                         }
