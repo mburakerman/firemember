@@ -26,7 +26,7 @@ Initial();
 const Firemember = function () {
 
     let game = [];
-    let level = 15;
+    let level = 1;
     let founded = []; // push founded fires here
     let score = 0;
     let showTime = 500; // how many miliseconds fires will be shown
